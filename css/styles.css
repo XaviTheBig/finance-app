@@ -66,14 +66,10 @@ button:hover {
 }
 
 /* TABLAS */
-/*table {
+table {
   width: 100%;
   border-collapse: collapse;
   text-align: center;
-}*/
-table {
-  display: block;
-  overflow-x: auto;
 }
 
 
@@ -310,34 +306,4 @@ textarea::placeholder {
   .compound-form-grid {
     grid-template-columns: 1fr;
   }
-}
-
-/* ===== MOBILE ===== */
-
-@media (max-width: 900px) {
-
-  .grid-top,
-  .grid-eps,
-  .compound-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .inputs-inline {
-    grid-template-columns: 1fr;
-  }
-
-  .top-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .top-bar input,
-  .top-bar select {
-    width: 100%;
-  }
-
-  table {
-    font-size: 0.85em;
-  }
-
 }
