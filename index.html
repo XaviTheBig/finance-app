@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance App</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    .home-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 90vh;
+      text-align: center;
+    }
+
+    .titulo {
+    font-size: 3em;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #58a6ff, #2ea043);
+
+    background-clip: text;              
+    -webkit-background-clip: text;      
+
+    color: transparent;                
+    -webkit-text-fill-color: transparent;
+    }
+
+    .btn-grid {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .big-btn {
+      width: 220px;
+      height: 220px;
+      border-radius: 15px;
+      background: #161b22;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 1px solid #30363d;
+    }
+
+    .big-btn:hover {
+      transform: scale(1.05);
+      background: #21262d;
+    }
+
+    .big-btn img {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+
+    .big-btn span {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="home-container">
+
+  <h1 class="titulo">📊 Finance App</h1>
+
+  <div class="btn-grid">
+
+    <div class="big-btn" onclick="irTIR()">
+      <img src="https://cdn-icons-png.flaticon.com/512/2721/2721293.png">
+      <span>Cálculo TIR</span>
+    </div>
+
+    <div class="big-btn" onclick="irCompuesto()">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png">
+      <span>Interés Compuesto</span>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  function irTIR() {
+    window.location.href = "pages/CalculoTIR.html";
+  }
+
+  function irCompuesto() {
+    window.location.href = "pages/compound.html";
+  }
+</script>
+
+</body>
+</html>

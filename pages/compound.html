@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Interés Compuesto</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <div class="card top-bar">
+    <button onclick="window.location.href='../index.html'">🏠 Inicio</button>
+    <button onclick="window.location.href='CalculoTIR.html'">📊 Cálculo TIR</button>
+  </div>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>💰 Interés Compuesto</h1>
+
+  <div class="compound-header card">
+    <h2 class="compound-title">Cálculo de Interés Compuesto</h2>
+    <p class="compound-subtitle">Introduce datos para proyectar tus inversiones.</p>
+  </div>
+
+  <div class="compound-layout">
+
+    <div class="compound-left">
+
+      <div class="card">
+        <h3>Datos de Inversión</h3>
+
+        <div class="compound-form-grid">
+          <div>
+            <label for="principal">Aportación inicial</label>
+            <input type="number" id="principal" step="0.01" placeholder="Ej: 10000">
+          </div>
+
+          <div>
+            <label for="monthly">Aportación mensual</label>
+            <input type="number" id="monthly" step="0.01" placeholder="Ej: 500">
+          </div>
+
+          <div>
+            <label for="annual">Aportación anual</label>
+            <input type="number" id="annual" step="0.01" readonly>
+          </div>
+
+          <div>
+            <label for="rate">Tasa de interés anual (%)</label>
+            <input type="number" id="rate" step="0.01" placeholder="Ej: 8">
+          </div>
+
+          <div>
+            <label for="years">Años de aporte</label>
+            <input type="number" id="years" placeholder="Ej: 20">
+          </div>
+
+          <div>
+            <label for="age">Edad actual</label>
+            <input type="number" id="age" placeholder="Ej: 30">
+          </div>
+        </div>
+
+        <div class="compound-actions">
+          <button onclick="calcularCompound()">Calcular</button>
+        </div>
+
+        <p id="compoundError" class="compound-error hidden"></p>
+      </div>
+
+      <div class="card">
+        <h3>Resumen</h3>
+        <div class="compound-summary">
+          <p>Capital aportado final: <span id="finalContributed">—</span></p>
+          <p>Capital generado final: <span id="finalGenerated">—</span></p>
+          <p>Interés total ganado: <span id="finalInterest">—</span></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Tabla de Proyección</h3>
+        <div class="compound-table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Año</th>
+                <th>Edad</th>
+                <th>Capital Aportado</th>
+                <th>Interés Total</th>
+                <th>Capital Generado</th>
+              </tr>
+            </thead>
+            <tbody id="compoundTableBody">
+              <tr>
+                <td colspan="5" class="compound-empty">Introduce los datos y pulsa “Calcular”.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="compound-right">
+
+      <div class="card">
+        <h3>Capital Aportado vs Capital Generado</h3>
+        <div class="chart-container compound-chart">
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Porcentaje de Capital Aportado vs Interés Generado</h3>
+        <div class="chart-container compound-chart">
+          <canvas id="pieChart"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Total Interés Acumulado</h3>
+        <div class="chart-container compound-chart">
+          <canvas id="areaChart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="../js/compound.js"></script>
+
+</body>
+</html>

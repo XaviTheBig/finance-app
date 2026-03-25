@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Valor Intrínseco</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <div class="card top-bar">
+    <button onclick="window.location.href='../index.html'">🏠 Inicio</button>
+    <button onclick="window.location.href='compound.html'">📈 Interés</button>
+  </div>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>📊 Cálculo de Valor Intrínseco</h1>
+
+  <!-- BARRA SUPERIOR -->
+  <div class="card top-bar">
+    <input type="text" id="inputTicker" placeholder="Ticker (Ej: AAPL)">
+
+    <button class="icon-btn" onclick="guardarActivoCompleto()">💾</button>
+    <button class="icon-btn" onclick="cargarActivoCompleto()">📂</button>
+
+    <select id="selectTickers" onchange="seleccionarTicker()">
+      <option value="">Activos guardados</option>
+    </select>
+
+    <span id="fechaAnalisis"></span>
+  </div>
+
+  <!-- GRID PEGAR DATOS Y METRICAS -->
+  <div class="grid-top">
+
+    <div class="card">
+      <h3>Pegar datos desde TIKR</h3>
+
+      <div class="eps-input-row">
+        <textarea id="pasteEPS" rows="3" placeholder="Pegar aquí los EPS copiados desde TIKR..."></textarea>
+        <button onclick="pegarDatos()">Cargar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Métricas</h3>
+      <p>CAGR EPS: <span id="cagr"></span></p>
+      <p>Margen de seguridad: <span id="margin"></span></p>
+      <p>Señal: <span id="signal"></span> <span id="signalIcon"></span> <span><small id="comentarioSignal"></small></span></p>
+    </div>
+
+  </div>
+
+  <!-- GRID EPS + INPUTS + GRAFICO -->
+  <div class="grid-eps">
+
+    <div class="eps-left">
+
+      <div class="card">
+        <h3>EPS (10 años)</h3>
+        <table>
+          <tr id="filaAnios"></tr>
+          <tr id="filaEPS"></tr>
+          <tr id="filaGrowth"></tr>
+        </table>
+      </div>
+
+      <div class="card inputs-inline">
+
+        <div>
+          <label>PER Bajo</label>
+          <input type="number" id="perBajo">
+        </div>
+
+        <div>
+          <label>PER Histórico</label>
+          <input type="number" id="perHistorico">
+        </div>
+
+        <div>
+          <label>PER Estimado</label>
+          <input type="number" id="perEstimado">
+        </div>
+
+        <div>
+          <label>Precio Actual</label>
+          <input type="number" id="precioActual">
+        </div>
+
+        <!-- BOTON CALCULAR EN LA MISMA LINEA -->
+        <div class="btn-calcular-inline">
+          <button onclick="calcular()">Calcular</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+      <h3>Gráfico EPS</h3>
+      <div class="chart-container">
+        <canvas id="graficoEPS"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="grid-top">
+
+    <div class="card">
+      <h3>Resultados</h3>
+      <table>
+        <tr>
+          <th>Escenario</th>
+          <th id="year1"></th>
+          <th id="year2"></th>
+          <th id="year3"></th>
+          <th>TIR</th>
+        </tr>
+
+        <tr>
+          <td>Bajo</td>
+          <td id="bajo1"></td>
+          <td id="bajo2"></td>
+          <td id="bajo3"></td>
+          <td id="tirB"></td>
+        </tr>
+        <tr class="sub">
+          <td>%</td>
+          <td id="upB1"></td>
+          <td id="upB2"></td>
+          <td id="upB3"></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Histórico</td>
+          <td id="hist1"></td>
+          <td id="hist2"></td>
+          <td id="hist3"></td>
+          <td id="tirH"></td>
+        </tr>
+        <tr class="sub">
+          <td>%</td>
+          <td id="upH1"></td>
+          <td id="upH2"></td>
+          <td id="upH3"></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Estimado</td>
+          <td id="est1"></td>
+          <td id="est2"></td>
+          <td id="est3"></td>
+          <td id="tirE"></td>
+        </tr>
+        <tr class="sub">
+          <td>%</td>
+          <td id="upE1"></td>
+          <td id="upE2"></td>
+          <td id="upE3"></td>
+          <td></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Proyección de Precio (Estimado)</h3>
+      <div class="chart-container">
+        <canvas id="graficoPrecio"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="../js/script.js"></script>
+
+</body>
+</html>
