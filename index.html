@@ -5,15 +5,18 @@
   <title>Finance App</title>
   <link rel="stylesheet" href="css/styles.css">
   <div class="card top-bar">
-    <button class="active">🏠 Inicio</button>
-    <button onclick="window.location.href='pages/CalculoTIR.html'">📊 TIR</button>
-    <button onclick="window.location.href='pages/compound.html'">💰 Interés</button>
-    <button onclick="window.location.href='pages/hoja.html'">📋 Seguimiento</button>
+  <div class="nav-left">
+      <button onclick="window.location.href='index.html'">🏠 Inicio</button>
+      <button onclick="window.location.href='pages/CalculoTIR.html'">📊 TIR</button>
+      <button onclick="window.location.href='pages/compound.html'">💰 Interés</button>
+      <button onclick="window.location.href='pages/hoja.html'">📋 Seguimiento</button>
+    </div>
 
-     <div class="nav-right">
+    <div class="nav-right">
       ⚙ <span id="versionInfo">v...</span>
     </div>
- </div>
+
+  </div>
   <style>
     .home-container {
       display: flex;
