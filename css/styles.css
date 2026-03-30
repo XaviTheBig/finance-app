@@ -370,12 +370,24 @@ textarea::placeholder {
   margin-bottom: 20px;
 }*/
 
-.top-bar {
+.card.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+
+  padding: 10px 15px;
+
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
+
 
 .nav-left {
   display: flex;
