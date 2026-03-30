@@ -406,23 +406,3 @@ textarea::placeholder {
 body {
   overflow-x: hidden;
 }
-
-/* ===== HEADERS UNIFICADOS ===== */
-
-.sheet-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .sheet-title {
-      font-size: 1.4em;
-    }
-
-.sheet-info {
-      font-size: 0.85em;
-      color: #8b949e;
-      margin-top: 5px;
-    }
