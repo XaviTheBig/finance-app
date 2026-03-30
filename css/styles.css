@@ -221,7 +221,7 @@ textarea::placeholder {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 15px;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .compound-left,
