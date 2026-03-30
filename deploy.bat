@@ -9,4 +9,3 @@ if errorlevel 1 (
 git add .
 git commit -m "deploy new version"
 git push
-pause

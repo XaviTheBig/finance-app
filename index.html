@@ -4,19 +4,6 @@
   <meta charset="UTF-8">
   <title>Finance App</title>
   <link rel="stylesheet" href="css/styles.css">
-  <div class="card top-bar">
-    <div class="nav-left">
-      <button class="active">🏠 Inicio</button>
-      <button onclick="window.location.href='pages/CalculoTIR.html'">📊 TIR</button>
-      <button onclick="window.location.href='pages/compound.html'">💰 Interés</button>
-      <button onclick="window.location.href='pages/hoja.html'">📋 Seguimiento</button>
-    </div>
-
-    <div class="nav-right">
-      ⚙ <span id="versionInfo">v...</span>
-    </div>
-
-  </div>
   <style>
     .home-container {
       display: flex;
@@ -74,8 +61,20 @@
       font-size: 1.2em;
     }
   </style>
+  <div class="card top-bar">
+    <div class="nav-left">
+      <button class="active">🏠 Inicio</button>
+      <button onclick="window.location.href='pages/CalculoTIR.html'">📊 TIR</button>
+      <button onclick="window.location.href='pages/compound.html'">💰 Interés</button>
+      <button onclick="window.location.href='pages/hoja.html'">📋 Seguimiento</button>
+    </div>
+
+    <div class="nav-right">
+      ⚙ <span id="versionInfo">v...</span>
+    </div>
+
+  </div>
 </head>
-<p id="versionInfo"></p>
 <body>
 
 <div class="home-container">
