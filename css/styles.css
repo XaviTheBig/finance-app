@@ -338,3 +338,27 @@ textarea::placeholder {
   color: #8b949e;
   font-size: 0.9rem;
 }
+
+.top-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.top-bar button {
+  background: #238636;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.top-bar button:hover {
+  background: #2ea043;
+}
+
+.top-bar button.active {
+  background: #1f6feb;
+}
