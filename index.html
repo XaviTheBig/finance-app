@@ -9,6 +9,10 @@
     <button onclick="window.location.href='pages/CalculoTIR.html'">📊 TIR</button>
     <button onclick="window.location.href='pages/compound.html'">💰 Interés</button>
     <button onclick="window.location.href='pages/hoja.html'">📋 Seguimiento</button>
+
+     <div class="nav-right">
+      ⚙ <span id="versionInfo">v...</span>
+    </div>
  </div>
   <style>
     .home-container {
@@ -113,14 +117,13 @@
 
 <script>
   fetch("version.json?v=" + Date.now())
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
       document.getElementById("versionInfo").textContent =
-        `Versión ${data.version} · ${data.updatedAt}`;
+        `v${data.version}`;
     })
     .catch(() => {
-      document.getElementById("versionInfo").textContent =
-        "Error cargando versión";
+      document.getElementById("versionInfo").textContent = "v?";
     });
 </script>
 
