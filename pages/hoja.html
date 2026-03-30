@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Hoja de Seguimiento</title>
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sheet-title {
+      font-size: 1.4em;
+    }
+
+    .sheet-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .sheet-container {
+      margin-top: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #30363d;
+      height: 80vh;
+      background: #0d1117;
+    }
+
+    .sheet-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .sheet-info {
+      font-size: 0.85em;
+      color: #8b949e;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>📊 Dashboard de Seguimiento</h1>
+
+  <div class="card top-bar">
+    <button onclick="window.location.href='../index.html'">🏠 Inicio</button>
+    <button onclick="window.location.href='CalculoTIR.html'">📊 TIR</button>
+    <button onclick="window.location.href='compound.html'">💰 Interés</button>
+  </div>
+
+  <div class="card">
+
+    <div class="sheet-header">
+      <div>
+        <div class="sheet-title">📋 Hoja de inversiones</div>
+        <div class="sheet-info">Datos sincronizados desde Google Sheets</div>
+      </div>
+
+      <div class="sheet-actions">
+        <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vScqyo18vkcYw84lNcfl3dxwp8iAT3ztqkrLL_d37YMGaFLprtGzEXhLgsj0g6baN05HLanOwJhaTJ-/pubhtml/sheet?headers=false&gid=668411078" target="_blank">
+          <button>🔗 Abrir en Google</button>
+        </a>
+
+        <button onclick="recargarSheet()">🔄 Recargar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sheet-container">
+    <iframe id="sheetFrame"
+      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vScqyo18vkcYw84lNcfl3dxwp8iAT3ztqkrLL_d37YMGaFLprtGzEXhLgsj0g6baN05HLanOwJhaTJ-/pubhtml/sheet?headers=false&gid=668411078">
+    </iframe>
+  </div>
+
+</div>
+
+<script>
+  function recargarSheet() {
+    const iframe = document.getElementById("sheetFrame");
+    iframe.src = iframe.src;
+  }
+</script>
+
+</body>
+</html>
