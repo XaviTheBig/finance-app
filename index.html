@@ -109,16 +109,18 @@
   }
 </script>
 
+<p id="versionInfo">Cargando versión...</p>
+
 <script>
-  fetch("version.json")
-    .then(res => res.json())
+  fetch("version.json?v=" + Date.now())
+    .then(response => response.json())
     .then(data => {
       document.getElementById("versionInfo").textContent =
-        `Versión ${data.version} · Actualizada ${data.updatedAt}`;
+        `Versión ${data.version} · ${data.updatedAt}`;
     })
     .catch(() => {
       document.getElementById("versionInfo").textContent =
-        "Versión no disponible";
+        "Error cargando versión";
     });
 </script>
 
