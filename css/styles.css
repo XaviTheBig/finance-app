@@ -409,21 +409,20 @@ body {
 
 /* ===== HEADERS UNIFICADOS ===== */
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+.sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-.section-title {
-  font-size: 1.4em;
-  margin: 0;
-}
+    .sheet-title {
+      font-size: 1.4em;
+    }
 
-.section-info {
-  font-size: 0.85em;
-  color: #8b949e;
-  margin-top: 5px;
-}
+.sheet-info {
+      font-size: 0.85em;
+      color: #8b949e;
+      margin-top: 5px;
+    }
