@@ -1,27 +1,30 @@
+from pathlib import Path
 import json
 from datetime import datetime
 
-# Leer version.json
-with open("version.json", "r") as f:
+print(">>> SCRIPT EJECUTADO")
+print(">>> Archivo actual:", Path(__file__).resolve())
+print(">>> Carpeta actual:", Path.cwd())
+
+base_path = Path(__file__).resolve().parent
+version_file = base_path / "version.json"
+
+print(">>> version.json esperado en:", version_file)
+
+with open(version_file, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-# Separar versión
-version = data["version"].split(".")
-major, minor, patch = map(int, version)
+print(">>> Versión antes:", data["version"])
 
-# Incrementar PATCH (último número)
+major, minor, patch = map(int, data["version"].split("."))
 patch += 1
 
-new_version = f"{major}.{minor}.{patch}"
+data["version"] = f"{major}.{minor}.{patch}"
+data["updatedAt"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-# Nueva fecha
-now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+with open(version_file, "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
 
-# Guardar cambios
-data["version"] = new_version
-data["updatedAt"] = now
-
-with open("version.json", "w") as f:
-    json.dump(data, f, indent=2)
-
-print(f"✅ Nueva versión: {new_version}")
+print(">>> Versión después:", data["version"])
+print(">>> Fecha:", data["updatedAt"])
+print(">>> FIN")
