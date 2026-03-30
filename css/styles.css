@@ -389,6 +389,7 @@ textarea::placeholder {
   align-items: center;
   gap: 5px;
   opacity: 0.8;
+  margin-right: 10px;
 }
 
 .nav-right:hover {
