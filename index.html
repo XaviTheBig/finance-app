@@ -63,6 +63,7 @@
     }
   </style>
 </head>
+<p id="versionInfo"></p>
 <body>
 
 <div class="home-container">
@@ -101,6 +102,19 @@
   function irCompuesto() {
     window.location.href = "pages/compound.html";
   }
+</script>
+
+<script>
+  fetch("version.json")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("versionInfo").textContent =
+        `Versión ${data.version} · Actualizada ${data.updatedAt}`;
+    })
+    .catch(() => {
+      document.getElementById("versionInfo").textContent =
+        "Versión no disponible";
+    });
 </script>
 
 </body>
