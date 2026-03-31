@@ -364,7 +364,10 @@ canvas {
   margin: 0 0 32px;
   font-size: 1.05rem;
   color: #8b949e;
-  line-height: 1.5;
+  line-height: 1.6;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ===== HOME NAV CARDS ===== */
@@ -401,12 +404,15 @@ canvas {
   text-align: center;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nav-card:hover {
   transform: translateY(-6px);
   border-color: #58a6ff;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  /*box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);*/
+  box-shadow: 0 0 0 1px #58a6ff, 0 14px 34px rgba(0,0,0,0.28);
+  transform: translateY(-6px) scale(1.02);
 }
 
 .nav-card-icon {
