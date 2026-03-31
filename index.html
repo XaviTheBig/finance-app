@@ -2,131 +2,79 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EquityLab — Análisis de Inversiones</title>
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" href="assets/Favicon-White.ico">
+  <link rel="icon" href="assets/favicon.ico">
+</head>
+<body>
+
+<div class="container">
+
   <div class="card top-bar">
     <div class="nav-left">
-      <span style="font-weight: bold;">📈 EquityLab   </span>
-      <button class="active">🏠 Inicio</button>
+      <button class="active" onclick="window.location.href='index.html'">🏠 Inicio</button>
       <button onclick="window.location.href='pages/CalculoTIR.html'">📊 Análisis TIR</button>
       <button onclick="window.location.href='pages/compound.html'">💰 Interés Compuesto</button>
-      <button onclick="window.location.href='pages/hoja.html'">📋 Panel de Seguimiento</button>
+      <button onclick="window.location.href='pages/hoja.html'">📋 Seguimiento</button>
     </div>
 
     <div class="nav-right">
       ⚙ <span id="versionInfo">v...</span>
     </div>
-
   </div>
-  <style>
-    .home-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 90vh;
-      text-align: center;
-    }
-
-    .titulo {
-    font-size: 3em;
-    margin-bottom: 40px;
-    background: linear-gradient(90deg, #58a6ff, #2ea043);
-
-    background-clip: text;              
-    -webkit-background-clip: text;      
-
-    color: transparent;                
-    -webkit-text-fill-color: transparent;
-    }
-
-    .btn-grid {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .big-btn {
-      width: 220px;
-      height: 220px;
-      border-radius: 15px;
-      background: #161b22;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: 0.3s;
-      border: 1px solid #30363d;
-    }
-
-    .big-btn:hover {
-      transform: scale(1.05);
-      background: #21262d;
-    }
-
-    .big-btn img {
-      width: 80px;
-      margin-bottom: 15px;
-    }
-
-    .big-btn span {
-      font-size: 1.2em;
-    }
-  </style>
-</head>
-<p id="versionInfo"></p>
-<body>
-
-<div class="home-container">
 
   <section class="hero">
-  <div class="hero-logo">
-    <img src="assets/EquityLab_Logo.png" alt="EquityLab" class="hero-logo-img">
-  </div>
+    <h1 class="sr-only">EquityLab</h1>
 
-  <p class="hero-subtitle">Herramientas para el inversor a largo plazo.</p>
+    <div class="hero-logo">
+      <img src="assets/logo.png" alt="EquityLab" class="hero-logo-img">
+    </div>
+
+    <p class="hero-subtitle">Analiza. Proyecta. Invierte.</p>
   </section>
 
-  <div class="btn-grid">
+  <p class="home-section-label">Herramientas disponibles</p>
 
-    <div class="big-btn" onclick="irTIR()">
-      <img src="https://cdn-icons-png.flaticon.com/512/2721/2721293.png">
-      <span>Cálculo TIR</span>
+  <section class="home-grid">
+    <div class="nav-card" onclick="window.location.href='pages/CalculoTIR.html'">
+      <div class="nav-card-icon">
+        <img src="assets/tir.png" alt="Análisis TIR">
+      </div>
+      <div class="nav-card-body">
+        <h3>Análisis TIR</h3>
+        <p>Valora empresas y proyecta escenarios de rentabilidad.</p>
+      </div>
     </div>
 
-    <div class="big-btn" onclick="irCompuesto()">
-      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png">
-      <span>Interés Compuesto</span>
+    <div class="nav-card" onclick="window.location.href='pages/compound.html'">
+      <div class="nav-card-icon">
+        <img src="assets/compound.png" alt="Interés Compuesto">
+      </div>
+      <div class="nav-card-body">
+        <h3>Interés Compuesto</h3>
+        <p>Simula el crecimiento del capital con aportaciones periódicas.</p>
+      </div>
     </div>
 
-    <div class="big-btn" onclick="window.location.href='pages/hoja.html'">
-      <img src="assets/seguimiento.png">
-      <span>Empresas Pilares</span>
+    <div class="nav-card" onclick="window.location.href='pages/hoja.html'">
+      <div class="nav-card-icon">
+        <img src="assets/seguimiento.png" alt="Seguimiento">
+      </div>
+      <div class="nav-card-body">
+        <h3>Seguimiento</h3>
+        <p>Consulta tus empresas pilares y su evolución de un vistazo.</p>
+      </div>
     </div>
-
-  </div>
+  </section>
 
 </div>
-
-<script>
-  function irTIR() {
-    window.location.href = "pages/CalculoTIR.html";
-  }
-
-  function irCompuesto() {
-    window.location.href = "pages/compound.html";
-  }
-</script>
 
 <script>
   fetch("version.json?v=" + Date.now())
     .then(res => res.json())
     .then(data => {
-      document.getElementById("versionInfo").textContent =
-        `v${data.version}`;
+      document.getElementById("versionInfo").textContent = `v${data.version}`;
     })
     .catch(() => {
       document.getElementById("versionInfo").textContent = "v?";
