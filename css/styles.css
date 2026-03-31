@@ -353,7 +353,8 @@ canvas {
 }
 
 .title-icon {
-  width: 80px;
+  width: 100px;
+  align-items: center;
 }
 
 .title-container h1 {
@@ -382,6 +383,6 @@ canvas {
   text-align: center;
   color: #8b949e;
   margin-top: 2px; 
-  margin-bottom: 20px;
+  margin-bottom: 80px;
   font-size: 1rem;
 }
