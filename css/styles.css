@@ -386,3 +386,43 @@ canvas {
   margin-bottom: 80px;
   font-size: 1rem;
 }
+
+/* ===== HERO / HEADER SAAS ===== */
+
+.hero {
+  text-align: center;
+  padding: 36px 0 28px;
+}
+
+.hero-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.hero-logo-img {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+}
+
+.hero-subtitle {
+  margin: 0 0 28px;
+  font-size: 1.05rem;
+  color: #8b949e;
+  line-height: 1.5;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
