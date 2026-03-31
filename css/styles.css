@@ -339,7 +339,7 @@ canvas {
   font-size: 0.9rem;
 }
 
-/* ===== HERO / HEADER SAAS ===== */
+/* ===== HERO ===== */
 
 .hero {
   text-align: center;
@@ -396,7 +396,6 @@ canvas {
   border-radius: 18px;
   padding: 24px 20px;
   cursor: pointer;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   min-height: 250px;
   display: flex;
   flex-direction: column;
@@ -405,15 +404,13 @@ canvas {
   text-align: center;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
 .nav-card:hover {
-  transform: translateY(-6px);
-  border-color: #58a6ff;
-  /*box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);*/
-  box-shadow: 0 0 0 1px #58a6ff, 0 14px 34px rgba(0,0,0,0.28);
   transform: translateY(-6px) scale(1.02);
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 1px #58a6ff, 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
 .nav-card-icon {
@@ -431,11 +428,9 @@ canvas {
 
 .nav-card-icon img {
   display: block;
-  width: 92px !important;
-  height: 92px !important;
-  max-width: 92px !important;
-  max-height: 92px !important;
-  object-fit: contain !important;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
 }
 
 .nav-card-body {
@@ -489,11 +484,4 @@ canvas {
   .compound-form-grid {
     grid-template-columns: 1fr;
   }
-}
-
-.hero-logo-img {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  display: block;
 }
