@@ -354,7 +354,7 @@ canvas {
 
 .title-icon {
   width: 400px;
-  align-items: center;
+  max-width: 300px;
 }
 
 .title-container h1 {
