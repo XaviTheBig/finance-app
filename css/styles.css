@@ -499,19 +499,13 @@ canvas {
   height: 100%;
 }
 
-.market-note {
-  font-size: 12px;
-  color: #6e7681;
-  margin-top: 8px;
-}
-
 .market-section {
   margin-top: 100px;
   text-align: center;
 }
 
 .market-header {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   text-align: center;
 }
 
@@ -523,5 +517,11 @@ canvas {
 .market-header p {
   margin-top: 6px;
   color: #9da7b3;
-  font-size: 10px;
+  font-size: 14px;
+}
+
+.market-note {
+  font-size: 12px;
+  color: #6e7681;
+  margin-top: 2px;
 }
