@@ -486,30 +486,32 @@ canvas {
   }
 }
 
-.market-section {
-  margin-top: 20px;
+.market-widget-section {
+  margin-top: 30px;
 }
 
-.market-header {
+.market-widget-header {
   margin-bottom: 15px;
 }
 
-.market-header h2 {
-  margin: 0 0 5px 0;
+.market-widget-header h2 {
+  margin: 0 0 8px;
 }
 
-.market-header p {
+.market-widget-header p {
+  margin: 0;
   color: #9da7b3;
-  font-size: 14px;
+  line-height: 1.5;
 }
 
-.market-chart {
+.market-widget-box {
   width: 100%;
-  height: 400px;
+  min-height: 520px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.market-note {
-  font-size: 12px;
-  color: #6e7681;
-  margin-top: 8px;
+.market-widget-box .tradingview-widget-container {
+  width: 100%;
+  height: 520px;
 }
