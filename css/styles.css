@@ -509,6 +509,7 @@ canvas {
   min-height: 520px;
   border-radius: 10px;
   overflow: hidden;
+  height: 500px;
 }
 
 .market-widget-box .tradingview-widget-container {
