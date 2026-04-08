@@ -529,41 +529,11 @@ canvas {
   text-align: center;
 }
 
-.footer {
-  margin-top: 80px;
-  padding: 30px 20px;
-  background: #0d1117;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  text-align: center;
-}
-
-.footer-content h3 {
-  margin: 0 0 10px;
-  font-size: 18px;
-}
-
-.footer-nav {
-  margin-bottom: 10px;
-}
-
-.footer-nav a {
-  margin: 0 10px;
-  color: #9da7b3;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.footer-nav a:hover {
-  color: #e6edf3;
-}
-
-.footer-note {
-  font-size: 13px;
-  color: #6e7681;
-  margin: 10px 0;
-}
-
 .footer-copy {
-  font-size: 12px;
-  color: #6e7681;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
