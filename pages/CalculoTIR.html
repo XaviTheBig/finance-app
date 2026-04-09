@@ -18,6 +18,19 @@
 </head>
 <body>
 
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+  const supabaseUrl = 'https://ulqbgjivybfdlclkkunw.supabase.co'
+  const supabaseAnonKey = 'sb_publishable_Y5Ov33W_9CzFIzN97-u5vw_l3rxhWrX'
+  const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+  console.log('Supabase cargado', supabase)
+</script>
+
+
+
 <div class="container">
 
   <h1>📊 Cálculo de Valor Intrínseco</h1>
