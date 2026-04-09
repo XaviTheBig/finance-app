@@ -321,8 +321,12 @@ function seleccionarTicker() {
 
 
 
-const { data, error } = await supabase.auth.getUser()
-console.log(data.user, error)
+async function comprobarSesion() {
+  const { data, error } = await supabase.auth.getUser();
+  console.log(data, error);
+}
+
+comprobarSesion();
 
 
 
