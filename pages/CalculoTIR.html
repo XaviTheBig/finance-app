@@ -19,6 +19,10 @@
 <body>
 
 
+
+
+  
+
 <script type="module">
   import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
@@ -28,6 +32,55 @@
 
   console.log('Supabase cargado', supabase)
 </script>
+
+<section class="card auth-box">
+  <h2>Cuenta</h2>
+  <input type="email" id="email" placeholder="Correo electrónico">
+  <input type="password" id="password" placeholder="Contraseña">
+  <button id="btn-signup">Registrarse</button>
+  <button id="btn-login">Iniciar sesión</button>
+  <button id="btn-logout">Cerrar sesión</button>
+  <p id="auth-status"></p>
+</section>
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+  const supabase = createClient('TU_URL', 'TU_ANON_KEY')
+
+  const statusEl = document.getElementById('auth-status')
+
+  function setStatus(msg) {
+    statusEl.textContent = msg
+  }
+
+  document.getElementById('btn-signup').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value
+
+    const { error } = await supabase.auth.signUp({ email, password })
+    setStatus(error ? error.message : 'Registro enviado.')
+  })
+
+  document.getElementById('btn-login').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    setStatus(error ? error.message : 'Sesión iniciada.')
+  })
+
+  document.getElementById('btn-logout').addEventListener('click', async () => {
+    const { error } = await supabase.auth.signOut()
+    setStatus(error ? error.message : 'Sesión cerrada.')
+  })
+</script>
+
+
+
+
+
+
 
 
 

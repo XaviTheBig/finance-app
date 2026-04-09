@@ -319,6 +319,14 @@ function seleccionarTicker() {
   }
 }
 
+
+
+const { data, error } = await supabase.auth.getUser()
+console.log(data.user, error)
+
+
+
+
 // Al cargar la página, actualizar la lista
 window.onload = function() {
   actualizarListaTickers();
