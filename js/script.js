@@ -319,7 +319,16 @@ function seleccionarTicker() {
   }
 }
 
+const { error } = await supabase.auth.signUp({
+  email,
+  password,
+  options: {
+    emailRedirectTo: 'https://xavithebig.github.io/finance-app/'
+  }
+})
+
 // Al cargar la página, actualizar la lista
 window.onload = function() {
   actualizarListaTickers();
 };
+
