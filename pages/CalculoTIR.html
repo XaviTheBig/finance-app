@@ -67,6 +67,14 @@
     const { error } = await supabase.auth.signOut()
     setStatus(error ? error.message : 'Sesión cerrada.')
   })
+
+  const { error } = await supabase.auth.signUp({
+  email,
+  password,
+  options: {
+    emailRedirectTo: 'https://xavithebig.github.io/finance-app/'
+  }
+})
 </script>
 
 
