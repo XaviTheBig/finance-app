@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard de Análisis TIR - Parser TIKR</title>
+  <link rel="stylesheet" href="../css/styles_tikr_auto.css">
+  <link rel="icon" href="../assets/Favicon-White.ico">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <div class="card top-bar">
+    <div class="nav-left">
+      <span style="font-weight: bold;">📈 EquityLab   </span>
+      <button onclick="window.location.href='../index.html'">🏠 Inicio</button>
+      <button class="active">📊 Análisis TIR Auto TIKR</button>
+      <button onclick="window.location.href='compound.html'">💰 Interés Compuesto</button>
+      <button onclick="window.location.href='hoja.html'">📋 Empresas Pilares</button>
+    </div>
+  </div>
+</head>
+<body>
+
+
+<!-- <section class="card auth-box">
+  <h2>Cuenta</h2>
+  <input type="email" id="email" placeholder="Correo electrónico">
+  <input type="password" id="password" placeholder="Contraseña">
+  <button type="button" id="btn-signup">Registrarse</button>
+  <button type="button" id="btn-login">Iniciar sesión</button>
+  <button type="button" id="btn-logout">Cerrar sesión</button>
+  <p id="auth-status"></p>
+</section> 
+
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+  const supabaseUrl = 'https://ulqbgjivybfdlclkkunw.supabase.co'
+  const supabaseAnonKey = 'sb_publishable_Y5Ov33W_9CzFIzN97-u5vw_l3rxhWrX'
+  const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+  const statusEl = document.getElementById('auth-status')
+
+  function setStatus(msg) {
+    statusEl.textContent = msg
+    console.log(msg)
+  }
+
+  document.getElementById('btn-signup').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value
+
+    const { error } = await supabase.auth.signUp({ email, password })
+    setStatus(error ? error.message : 'Registro enviado.')
+  })
+
+  document.getElementById('btn-login').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim()
+    const password = document.getElementById('password').value
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    setStatus(error ? error.message : 'Sesión iniciada.')
+  })
+
+  document.getElementById('btn-logout').addEventListener('click', async () => {
+    const { error } = await supabase.auth.signOut()
+    setStatus(error ? error.message : 'Sesión cerrada.')
+  })
+
+  const { error } = await supabase.auth.signUp({
+  email,
+  password,
+  options: {
+    emailRedirectTo: 'https://xavithebig.github.io/finance-app/'
+  }
+})
+</script>
+-->
+
+
+<div class="container">
+
+  <h1>📊 Cálculo de Valor Intrínseco</h1>
+
+  <div class="card">
+    <div class="sheet-header">
+      <div>
+        <div class="sheet-title">📊 Cálculo de Valor Intrínseco</div>
+        <div class="sheet-info">Proyecta el valor de tus inversiones a futuro con esta herramienta.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BARRA SUPERIOR 
+  <div class="card top-bar">
+    <input type="text" id="inputTicker" placeholder="Ticker (Ej: AAPL)">
+
+    <button class="icon-btn" onclick="guardarActivoCompleto()">💾</button>
+    <button class="icon-btn" onclick="cargarActivoCompleto()">📂</button>
+
+    <select id="selectTickers" onchange="seleccionarTicker()">
+      <option value="">Activos guardados</option>
+    </select>
+
+    <span id="fechaAnalisis"></span>
+  </div>
+  -->
+
+  <!-- GRID PEGAR DATOS Y METRICAS -->
+  <div class="grid-top">
+
+    <div class="card">
+      <h3>Pegar tabla completa desde TIKR</h3>
+
+      <div class="eps-input-row">
+        <textarea id="pasteEPS" rows="8" placeholder="Pega aquí la tabla completa de TIKR. La página buscará automáticamente las filas: LTM Diluted EPS Before Extra y LTM Price / Diluted EPS (P/E)."></textarea>
+        <button onclick="pegarDatos()">Cargar tabla</button>
+      </div>
+      <p id="tikrParserStatus" class="tikr-parser-status"></p>
+      <p class="tikr-parser-help">Auto-rellena años, EPS, PER bajo, PER histórico y PER estimado. Si encuentra la fila <strong>Price</strong>, también rellena el precio actual.</p>
+    </div>
+
+    <div class="card">
+      <h3>Métricas</h3>
+      <p>CAGR EPS: <span id="cagr"></span></p>
+      <p>Margen de seguridad: <span id="margin"></span></p>
+      <p>Señal: <span id="signal"></span> <span id="signalIcon"></span> <span><small id="comentarioSignal"></small></span></p>
+    </div>
+
+  </div>
+
+  <!-- GRID EPS + INPUTS + GRAFICO -->
+  <div class="grid-eps">
+
+    <div class="eps-left">
+
+      <div class="card">
+        <h3>EPS (10 años)</h3>
+        <table>
+          <tr id="filaAnios"></tr>
+          <tr id="filaEPS"></tr>
+          <tr id="filaGrowth"></tr>
+        </table>
+      </div>
+
+      <div class="card inputs-inline">
+
+        <div>
+          <label>PER Bajo</label>
+          <input type="number" id="perBajo">
+        </div>
+
+        <div>
+          <label>PER Histórico</label>
+          <input type="number" id="perHistorico">
+        </div>
+
+        <div>
+          <label>PER Estimado</label>
+          <input type="number" id="perEstimado">
+        </div>
+
+        <div>
+          <label>Precio Actual</label>
+          <input type="number" id="precioActual">
+        </div>
+
+        <!-- BOTON CALCULAR EN LA MISMA LINEA -->
+        <div class="btn-calcular-inline">
+          <button onclick="calcular()">Calcular</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="card">
+      <h3>Gráfico EPS</h3>
+      <div class="chart-container">
+        <canvas id="graficoEPS"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="grid-top">
+
+    <div class="card">
+      <h3>Resultados</h3>
+      <table>
+        <tr>
+          <th>Escenario</th>
+          <th id="year1"></th>
+          <th id="year2"></th>
+          <th id="year3"></th>
+          <th>TIR</th>
+        </tr>
+
+        <tr>
+          <td>Bajo</td>
+          <td id="bajo1"></td>
+          <td id="bajo2"></td>
+          <td id="bajo3"></td>
+          <td id="tirB"></td>
+        </tr>
+        <tr class="sub">
+          <td>%</td>
+          <td id="upB1"></td>
+          <td id="upB2"></td>
+          <td id="upB3"></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Histórico</td>
+          <td id="hist1"></td>
+          <td id="hist2"></td>
+          <td id="hist3"></td>
+          <td id="tirH"></td>
+        </tr>
+        <tr class="sub">
+          <td>%</td>
+          <td id="upH1"></td>
+          <td id="upH2"></td>
+          <td id="upH3"></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>Estimado</td>
+          <td id="est1"></td>
+          <td id="est2"></td>
+          <td id="est3"></td>
+          <td id="tirE"></td>
+        </tr>
+        <tr class="sub">
+          <td>%</td>
+          <td id="upE1"></td>
+          <td id="upE2"></td>
+          <td id="upE3"></td>
+          <td></td>
+        </tr>
+
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>Proyección de Precio (Estimado)</h3>
+      <div class="chart-container">
+        <canvas id="graficoPrecio"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="../js/script_tikr_auto.js"></script>
+
+</body>
+</html>
