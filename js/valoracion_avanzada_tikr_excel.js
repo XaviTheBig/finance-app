@@ -283,7 +283,7 @@ function extractAllData() {
   }
 
   const firstFutureYear = firstFuture(valuesWithYears(rows.eps, parsed.estimates))?.year || (latestYear + 1);
-  const firstFuture = {
+  const firstFutureMetrics = {
     revenue: projectRow(rows.revenue, parsed.estimates, firstFutureYear),
     ebitda: projectRow(rows.ebitda, parsed.estimates, firstFutureYear),
     ebit: projectRow(rows.ebit, parsed.estimates, firstFutureYear),
@@ -291,10 +291,10 @@ function extractAllData() {
     eps: projectRow(rows.eps, parsed.estimates, firstFutureYear),
     fcf: projectRow(rows.fcf, parsed.estimates, firstFutureYear)
   };
-  if (!Number.isFinite(firstFuture.fcf.value) && rows.cfo && rows.capex) {
+  if (!Number.isFinite(firstFutureMetrics.fcf.value) && rows.cfo && rows.capex) {
     const cfo = projectRow(rows.cfo, parsed.estimates, firstFutureYear);
     const capex = projectRow(rows.capex, parsed.estimates, firstFutureYear);
-    firstFuture.fcf = { value: (cfo.value || 0) + (capex.value || 0), year: firstFutureYear, method: 'CFO + CapEx' };
+    firstFutureMetrics.fcf = { value: (cfo.value || 0) + (capex.value || 0), year: firstFutureYear, method: 'CFO + CapEx' };
   }
 
   let netDebtCurrent = null;
@@ -322,10 +322,10 @@ function extractAllData() {
   const impliedEvFirst = Number.isFinite(impliedMarketCapFirst) ? impliedMarketCapFirst + (Number.isFinite(netDebtFirst) ? netDebtFirst : 0) : null;
 
   const implied = {
-    pe: Number.isFinite(currentPrice) && Number.isFinite(firstFuture.eps.value) && firstFuture.eps.value > 0 ? currentPrice / firstFuture.eps.value : null,
-    evFcf: Number.isFinite(impliedEvFirst) && Number.isFinite(firstFuture.fcf.value) && firstFuture.fcf.value > 0 ? impliedEvFirst / firstFuture.fcf.value : null,
-    evEbitda: Number.isFinite(impliedEvFirst) && Number.isFinite(firstFuture.ebitda.value) && firstFuture.ebitda.value > 0 ? impliedEvFirst / firstFuture.ebitda.value : null,
-    evEbit: Number.isFinite(impliedEvFirst) && Number.isFinite(firstFuture.ebit.value) && firstFuture.ebit.value > 0 ? impliedEvFirst / firstFuture.ebit.value : null
+    pe: Number.isFinite(currentPrice) && Number.isFinite(firstFutureMetrics.eps.value) && firstFutureMetrics.eps.value > 0 ? currentPrice / firstFutureMetrics.eps.value : null,
+    evFcf: Number.isFinite(impliedEvFirst) && Number.isFinite(firstFutureMetrics.fcf.value) && firstFutureMetrics.fcf.value > 0 ? impliedEvFirst / firstFutureMetrics.fcf.value : null,
+    evEbitda: Number.isFinite(impliedEvFirst) && Number.isFinite(firstFutureMetrics.ebitda.value) && firstFutureMetrics.ebitda.value > 0 ? impliedEvFirst / firstFutureMetrics.ebitda.value : null,
+    evEbit: Number.isFinite(impliedEvFirst) && Number.isFinite(firstFutureMetrics.ebit.value) && firstFutureMetrics.ebit.value > 0 ? impliedEvFirst / firstFutureMetrics.ebit.value : null
   };
 
   const history = {
@@ -342,7 +342,7 @@ function extractAllData() {
     evEbit: readManualMultiple('manualEVEBIT')
   };
 
-  return { parsed, rows, metrics, firstFuture, market: { currentPrice, priceClose, marketCap, sharesLatest, sharesFirst, sharesTarget }, balance: { netDebtCurrent, netDebtFirst, netDebtTarget }, settings: { targetReturn, projectionYears, latestYear, firstFutureYear, targetYear }, implied, history, manual };
+  return { parsed, rows, metrics, firstFuture: firstFutureMetrics, market: { currentPrice, priceClose, marketCap, sharesLatest, sharesFirst, sharesTarget }, balance: { netDebtCurrent, netDebtFirst, netDebtTarget }, settings: { targetReturn, projectionYears, latestYear, firstFutureYear, targetYear }, implied, history, manual };
 }
 
 function chooseMultiple(data, key, fallback) {
