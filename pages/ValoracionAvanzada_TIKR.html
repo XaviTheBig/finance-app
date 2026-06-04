@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Valoración Avanzada TIKR</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/styles_valoracion_avanzada_tikr.css">
+  <link rel="icon" href="../assets/Favicon-White.ico">
+</head>
+<body>
+
+  <div class="card top-bar">
+    <div class="nav-left">
+      <span style="font-weight: bold;">📈 EquityLab</span>
+      <button onclick="window.location.href='../index.html'">🏠 Inicio</button>
+      <button onclick="window.location.href='CalculoTIR.html'">📊 Análisis TIR</button>
+      <button onclick="window.location.href='compound.html'">💰 Interés Compuesto</button>
+      <button onclick="window.location.href='hoja.html'">📋 Empresas Pilares</button>
+      <button class="active">🧮 Valoración Avanzada</button>
+    </div>
+  </div>
+
+  <div class="container valuation-page">
+    <h1>🧮 Valoración Avanzada con datos de TIKR</h1>
+
+    <section class="card intro-card">
+      <div>
+        <div class="sheet-title">Copiar, pegar y valorar</div>
+        <div class="sheet-info">
+          Pega las tablas de TIKR en los cinco campos. La página extrae EPS, EBITDA, EBIT, FCF, deuda neta, múltiplos históricos y calcula varios precios objetivo.
+        </div>
+      </div>
+    </section>
+
+    <section class="card valuation-controls">
+      <h3>Datos manuales</h3>
+      <div class="manual-grid">
+        <label>
+          Ticker / Empresa
+          <input type="text" id="tickerName" placeholder="Ej: GOOGL">
+        </label>
+        <label>
+          Precio actual de la acción
+          <input type="number" id="currentPrice" step="0.01" placeholder="Ej: 185.50">
+        </label>
+        <label>
+          TIR objetivo anual
+          <input type="number" id="targetReturn" step="0.1" value="15">
+        </label>
+        <label>
+          Años de proyección
+          <input type="number" id="projectionYears" step="1" min="1" value="3">
+        </label>
+      </div>
+      <p class="help-text">El precio actual es manual a propósito, para no depender de una cotización desactualizada del copiado desde TIKR.</p>
+    </section>
+
+    <section class="paste-grid">
+      <div class="card paste-card">
+        <h3>1. Income Statement</h3>
+        <textarea id="incomeText" rows="9" placeholder="Pega aquí la tabla Income Statement de TIKR..."></textarea>
+      </div>
+
+      <div class="card paste-card">
+        <h3>2. Balance Sheet</h3>
+        <textarea id="balanceText" rows="9" placeholder="Pega aquí la tabla Balance Sheet de TIKR..."></textarea>
+      </div>
+
+      <div class="card paste-card">
+        <h3>3. Cash Flow Statement</h3>
+        <textarea id="cashflowText" rows="9" placeholder="Pega aquí la tabla Cash Flow Statement de TIKR..."></textarea>
+      </div>
+
+      <div class="card paste-card">
+        <h3>4. Actuals & Forward Estimates</h3>
+        <textarea id="estimatesText" rows="9" placeholder="Pega aquí la tabla Actuals & Forward Estimates de TIKR..."></textarea>
+      </div>
+
+      <div class="card paste-card full-width">
+        <h3>5. Multiples</h3>
+        <textarea id="multiplesText" rows="9" placeholder="Pega aquí la tabla Multiples de TIKR..."></textarea>
+      </div>
+    </section>
+
+    <section class="card actions-card">
+      <button id="btnParseValuation">Analizar y valorar</button>
+      <button id="btnClearValuation" class="secondary-btn">Limpiar resultados</button>
+      <span id="valuationStatus" class="status-text"></span>
+    </section>
+
+    <section class="result-grid">
+      <div class="card">
+        <h3>Datos detectados</h3>
+        <div id="detectedData" class="empty-state">Aún no hay datos analizados.</div>
+      </div>
+
+      <div class="card">
+        <h3>Múltiplos sugeridos</h3>
+        <div id="multipleSuggestions" class="empty-state">Pega la tabla de Multiples para sugerir múltiplos automáticamente.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Valoración por métodos</h3>
+      <div class="table-wrapper">
+        <table class="valuation-table">
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Métrica futura</th>
+              <th>Múltiplo usado</th>
+              <th>Precio objetivo</th>
+              <th>Upside</th>
+              <th>CAGR</th>
+              <th>Precio compra para TIR objetivo</th>
+            </tr>
+          </thead>
+          <tbody id="valuationRows">
+            <tr><td colspan="7" class="empty-state">Pulsa “Analizar y valorar”.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="result-grid">
+      <div class="card summary-card">
+        <h3>Resumen</h3>
+        <div id="valuationSummary" class="empty-state">Sin resumen todavía.</div>
+      </div>
+
+      <div class="card warning-card">
+        <h3>Notas de calidad de datos</h3>
+        <ul id="dataWarnings">
+          <li>Los cálculos son orientativos y dependen de que las tablas pegadas desde TIKR mantengan una estructura reconocible.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script src="../js/valoracion_avanzada_tikr.js"></script>
+</body>
+</html>
