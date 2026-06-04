@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Valoración Avanzada TIKR - Método Excel</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/styles_valoracion_avanzada_tikr.css">
+  <link rel="stylesheet" href="../css/styles_valoracion_avanzada_tikr_excel.css">
+  <link rel="icon" href="../assets/Favicon-White.ico">
+</head>
+<body>
+
+  <div class="card top-bar">
+    <div class="nav-left">
+      <span style="font-weight: bold;">📈 EquityLab</span>
+      <button onclick="window.location.href='../index.html'">🏠 Inicio</button>
+      <button onclick="window.location.href='CalculoTIR.html'">📊 Análisis TIR</button>
+      <button onclick="window.location.href='compound.html'">💰 Interés Compuesto</button>
+      <button onclick="window.location.href='hoja.html'">📋 Empresas Pilares</button>
+      <button class="active">🧮 Valoración Avanzada Excel</button>
+    </div>
+  </div>
+
+  <div class="container valuation-page">
+    <h1>🧮 Valoración Avanzada con datos de TIKR</h1>
+
+    <section class="card intro-card">
+      <div>
+        <div class="sheet-title">Versión corregida: lógica tipo Excel</div>
+        <div class="sheet-info">
+          Esta variante corrige la versión anterior: usa acciones diluidas, múltiplos forward implícitos y PER ex-cash, siguiendo mejor la lógica de la pestaña 4.Valoracion.
+        </div>
+      </div>
+    </section>
+
+    <section class="card valuation-controls">
+      <h3>Datos manuales</h3>
+      <div class="manual-grid">
+        <label>
+          Ticker / Empresa
+          <input type="text" id="tickerNameExcel" placeholder="Ej: GOOGL">
+        </label>
+        <label>
+          Precio actual de la acción
+          <input type="number" id="currentPriceExcel" step="0.01" placeholder="Ej: 358.99">
+        </label>
+        <label>
+          TIR objetivo anual
+          <input type="number" id="targetReturnExcel" step="0.1" value="15">
+        </label>
+        <label>
+          Años de proyección
+          <input type="number" id="projectionYearsExcel" step="1" min="1" value="5">
+        </label>
+      </div>
+      <p class="help-text">En el Excel la valoración se calcula normalmente a 5 años. Por eso esta versión usa 5 años por defecto.</p>
+    </section>
+
+    <section class="card valuation-controls manual-multiples-card">
+      <h3>Múltiplos manuales opcionales</h3>
+      <div class="manual-grid">
+        <label>
+          PER objetivo
+          <input type="number" id="manualPER" step="0.01" placeholder="Auto">
+        </label>
+        <label>
+          EV / FCF objetivo
+          <input type="number" id="manualEVFCF" step="0.01" placeholder="Auto">
+        </label>
+        <label>
+          EV / EBITDA objetivo
+          <input type="number" id="manualEVEBITDA" step="0.01" placeholder="Auto">
+        </label>
+        <label>
+          EV / EBIT objetivo
+          <input type="number" id="manualEVEBIT" step="0.01" placeholder="Auto">
+        </label>
+      </div>
+      <p class="help-text">Si los dejas vacíos, la web usa múltiplos forward implícitos del primer año estimado, parecido a la planilla. Si escribes un valor, tendrá prioridad.</p>
+    </section>
+
+    <section class="paste-grid">
+      <div class="card paste-card">
+        <h3>1. Income Statement</h3>
+        <textarea id="incomeTextExcel" rows="9" placeholder="Pega aquí la tabla Income Statement de TIKR..."></textarea>
+      </div>
+      <div class="card paste-card">
+        <h3>2. Balance Sheet</h3>
+        <textarea id="balanceTextExcel" rows="9" placeholder="Pega aquí la tabla Balance Sheet de TIKR..."></textarea>
+      </div>
+      <div class="card paste-card">
+        <h3>3. Cash Flow Statement</h3>
+        <textarea id="cashflowTextExcel" rows="9" placeholder="Pega aquí la tabla Cash Flow Statement de TIKR..."></textarea>
+      </div>
+      <div class="card paste-card">
+        <h3>4. Actuals & Forward Estimates</h3>
+        <textarea id="estimatesTextExcel" rows="9" placeholder="Pega aquí la tabla Actuals & Forward Estimates de TIKR..."></textarea>
+      </div>
+      <div class="card paste-card full-width">
+        <h3>5. Multiples</h3>
+        <textarea id="multiplesTextExcel" rows="9" placeholder="Pega aquí la tabla Multiples de TIKR..."></textarea>
+      </div>
+    </section>
+
+    <section class="card actions-card">
+      <button id="btnParseValuationExcel">Analizar y valorar</button>
+      <button id="btnClearValuationExcel" class="secondary-btn">Limpiar resultados</button>
+      <span id="valuationStatusExcel" class="status-text"></span>
+    </section>
+
+    <section class="result-grid">
+      <div class="card">
+        <h3>Datos detectados</h3>
+        <div id="detectedDataExcel" class="empty-state">Aún no hay datos analizados.</div>
+      </div>
+      <div class="card">
+        <h3>Múltiplos usados</h3>
+        <div id="multipleSuggestionsExcel" class="empty-state">Pega los datos y pulsa analizar.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Valoración por métodos</h3>
+      <div class="table-wrapper">
+        <table class="valuation-table">
+          <thead>
+            <tr>
+              <th>Método</th>
+              <th>Métrica futura</th>
+              <th>Múltiplo usado</th>
+              <th>Precio objetivo</th>
+              <th>Upside</th>
+              <th>CAGR</th>
+              <th>Precio compra para TIR objetivo</th>
+            </tr>
+          </thead>
+          <tbody id="valuationRowsExcel">
+            <tr><td colspan="7" class="empty-state">Pulsa “Analizar y valorar”.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="result-grid">
+      <div class="card summary-card">
+        <h3>Resumen</h3>
+        <div id="valuationSummaryExcel" class="empty-state">Sin resumen todavía.</div>
+      </div>
+      <div class="card warning-card">
+        <h3>Notas de calidad de datos</h3>
+        <ul id="dataWarningsExcel">
+          <li>Los cálculos son orientativos y dependen de que las tablas pegadas desde TIKR mantengan una estructura reconocible.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <script src="../js/valoracion_avanzada_tikr_excel.js"></script>
+</body>
+</html>

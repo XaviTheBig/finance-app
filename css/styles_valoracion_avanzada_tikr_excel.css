@@ -1,0 +1,19 @@
+/* Ajustes adicionales para la versión Excel-like */
+.manual-multiples-card {
+  border: 1px solid rgba(88, 166, 255, 0.18);
+}
+
+.manual-multiples-card input::placeholder {
+  color: #8b949e;
+}
+
+.sheet-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.sheet-info {
+  color: #9da7b3;
+  line-height: 1.5;
+}
